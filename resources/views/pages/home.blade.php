@@ -94,79 +94,95 @@
             </h2>
 
             @if(session('contact_success'))
-                <p class="contact-success">{{ $contactGlobal->get('success_message') }}</p>
+                <x-contact.success-state :contact="$contactGlobal" :site="$siteGlobal" />
+                @production
+                <script>
+                    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
+                    window.plausible('Contact Form Submit');
+                </script>
+                @endproduction
             @else
                 <form
-                action="{{ route('contact.store') }}"
-                method="POST"
-                class="contact-form"
-                data-contact-form
-                data-error-message="{{ $contactGlobal->get('error_message') }}"
-                data-rate-limit-message="{{ $contactGlobal->get('rate_limit_message') }}"
-                novalidate
-            >
-                @csrf
+                    action="{{ route('contact.store') }}"
+                    method="POST"
+                    class="contact-form"
+                    data-contact-form
+                    data-state="idle"
+                    data-error-message="{{ $contactGlobal->get('error_message') }}"
+                    data-rate-limit-message="{{ $contactGlobal->get('rate_limit_message') }}"
+                    novalidate
+                >
+                    @csrf
 
-                {{-- Honeypot — hidden from users and AT, visible to bots that auto-fill known field names --}}
-                <div class="contact-hp" aria-hidden="true">
-                    <input type="text" name="website" tabindex="-1" autocomplete="off">
-                </div>
+                    {{-- Honeypot — hidden from users and AT, visible to bots that auto-fill known field names --}}
+                    <div class="contact-hp" aria-hidden="true">
+                        <input type="text" name="website" tabindex="-1" autocomplete="off">
+                    </div>
 
-                {{-- Timestamp — JS overrides it at load (the page is statically cached) --}}
-                <input type="hidden" name="form_loaded_at" value="{{ time() }}">
+                    {{-- Timestamp — JS overrides it at load (the page is statically cached) --}}
+                    <input type="hidden" name="form_loaded_at" value="{{ time() }}">
 
-                <div data-contact-body>
-                    <p class="contact-banner @if(session('contact_error')) is-visible @endif" data-contact-error-banner role="alert" aria-live="polite">@if(session('contact_error')){{ $contactGlobal->get('error_message') }}@endif</p>
+                    <div data-contact-body>
+                        <x-contact.error-banner
+                            data-contact-error-banner
+                            :message="session('contact_error') ? $contactGlobal->get('error_message') : null"
+                            :visible="(bool) session('contact_error')"
+                        />
 
-                    <x-form-field
-                        name="first_name"
-                        :label="$contactGlobal->get('label_firstname')"
-                        :placeholder="$contactGlobal->get('placeholder_firstname')"
-                        required
-                        autocomplete="given-name"
+                        <x-form-field
+                            name="first_name"
+                            :label="$contactGlobal->get('label_firstname')"
+                            :placeholder="$contactGlobal->get('placeholder_firstname')"
+                            required
+                            autocomplete="given-name"
+                        />
+
+                        <x-form-field
+                            name="last_name"
+                            :label="$contactGlobal->get('label_lastname')"
+                            :placeholder="$contactGlobal->get('placeholder_lastname')"
+                            required
+                            autocomplete="family-name"
+                        />
+
+                        <x-form-field
+                            type="email"
+                            name="email"
+                            :label="$contactGlobal->get('label_email')"
+                            :placeholder="$contactGlobal->get('placeholder_email')"
+                            required
+                            autocomplete="email"
+                        />
+
+                        <x-form-field
+                            type="tel"
+                            name="phone"
+                            :label="$contactGlobal->get('label_phone')"
+                            :placeholder="$contactGlobal->get('placeholder_phone')"
+                            required
+                            autocomplete="tel"
+                        />
+
+                        <x-form-field
+                            type="textarea"
+                            name="message"
+                            :label="$contactGlobal->get('label_message')"
+                            :placeholder="$contactGlobal->get('placeholder_message')"
+                            required
+                            :rows="5"
+                        />
+
+                        <button type="submit" class="contact-submit" data-contact-submit>
+                            {{ $contactGlobal->get('submit_label') }}
+                        </button>
+                    </div>
+
+                    {{-- AJAX success state — hidden by default via CSS, revealed when [data-state="success"] is set on the form --}}
+                    <x-contact.success-state
+                        :contact="$contactGlobal"
+                        :site="$siteGlobal"
+                        data-contact-success
                     />
-
-                    <x-form-field
-                        name="last_name"
-                        :label="$contactGlobal->get('label_lastname')"
-                        :placeholder="$contactGlobal->get('placeholder_lastname')"
-                        required
-                        autocomplete="family-name"
-                    />
-
-                    <x-form-field
-                        type="email"
-                        name="email"
-                        :label="$contactGlobal->get('label_email')"
-                        :placeholder="$contactGlobal->get('placeholder_email')"
-                        required
-                        autocomplete="email"
-                    />
-
-                    <x-form-field
-                        type="tel"
-                        name="phone"
-                        :label="$contactGlobal->get('label_phone')"
-                        :placeholder="$contactGlobal->get('placeholder_phone')"
-                        required
-                        autocomplete="tel"
-                    />
-
-                    <x-form-field
-                        type="textarea"
-                        name="message"
-                        :label="$contactGlobal->get('label_message')"
-                        :placeholder="$contactGlobal->get('placeholder_message')"
-                        required
-                        :rows="5"
-                    />
-
-                    <button type="submit" class="contact-submit" data-contact-submit>
-                        {{ $contactGlobal->get('submit_label') }}
-                    </button>
-                </div>
-
-                    <p class="contact-success hidden" data-contact-success>{{ $contactGlobal->get('success_message') }}</p>
                 </form>
             @endif
         </div>

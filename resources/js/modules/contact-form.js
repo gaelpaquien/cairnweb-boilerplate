@@ -4,9 +4,6 @@ export function init() {
 
   const submitBtn = form.querySelector('[data-contact-submit]');
   const errorBanner = form.querySelector('[data-contact-error-banner]');
-  const successContainer = form.querySelector('[data-contact-success]');
-
-  let state = 'idle';
 
   // The page is statically cached, so the server-rendered form_loaded_at timestamp
   // would be stale on revisits — refresh it client-side at load.
@@ -35,7 +32,7 @@ export function init() {
       el.textContent = '';
       el.classList.remove('is-visible');
     });
-    form.querySelectorAll('[data-state]').forEach((el) => {
+    form.querySelectorAll('[data-state="invalid"]').forEach((el) => {
       el.removeAttribute('data-state');
     });
     if (errorBanner) {
@@ -45,33 +42,23 @@ export function init() {
   }
 
   function setState(newState) {
-    state = newState;
+    form.dataset.state = newState;
     const inputs = form.querySelectorAll('input, textarea, button');
-
-    if (state === 'loading') {
-      inputs.forEach((el) => (el.disabled = true));
-      if (submitBtn) submitBtn.setAttribute('aria-busy', 'true');
-    }
-
-    if (state === 'success' && successContainer) {
-      const body = form.querySelector('[data-contact-body]');
-      if (body) body.classList.add('hidden');
-      if (errorBanner) errorBanner.classList.add('hidden');
-      successContainer.classList.remove('hidden');
-    }
-
-    if (state === 'error') {
-      inputs.forEach((el) => (el.disabled = false));
-      if (submitBtn) submitBtn.removeAttribute('aria-busy');
+    const isLocked = newState === 'loading' || newState === 'success';
+    inputs.forEach((el) => (el.disabled = isLocked));
+    if (submitBtn) {
+      if (newState === 'loading') submitBtn.setAttribute('aria-busy', 'true');
+      else submitBtn.removeAttribute('aria-busy');
     }
   }
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
-    clearAllErrors();
 
-    if (state === 'loading') return;
+    if (form.dataset.state === 'loading' || form.dataset.state === 'success') return;
 
+    // Build FormData BEFORE setState('loading') disables inputs
+    // (FormData skips disabled fields, which would send an empty payload).
     const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content;
     const formData = new FormData(form);
 
@@ -89,12 +76,14 @@ export function init() {
       });
 
       if (response.ok) {
+        clearAllErrors();
         setState('success');
         return;
       }
 
       if (response.status === 422) {
         const data = await response.json();
+        clearAllErrors();
         const orphanMessages = [];
         if (data.errors) {
           Object.entries(data.errors).forEach(([field, messages]) => {
@@ -107,15 +96,15 @@ export function init() {
         return;
       }
 
+      clearAllErrors();
       if (response.status === 429) {
         showBannerError(form.dataset.rateLimitMessage ?? '');
-        setState('error');
-        return;
+      } else {
+        showBannerError(form.dataset.errorMessage ?? '');
       }
-
-      showBannerError(form.dataset.errorMessage ?? '');
       setState('error');
     } catch {
+      clearAllErrors();
       showBannerError(form.dataset.errorMessage ?? '');
       setState('error');
     }

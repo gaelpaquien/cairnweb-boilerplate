@@ -178,7 +178,7 @@ Cela inclut, sans exception :
 - **Blueprints** : définitions de champs dans `resources/blueprints/globals/` et `resources/blueprints/collections/pages/`.
 
 **Image processing :**
-- Glide gère le redimensionnement, la conversion WebP et le `srcset` à la volée. Toujours passer par lui (et par le composant `<x-responsive-image />`) — jamais d'`<img>` brut sur un asset Statamic.
+- Glide gère le redimensionnement et le `srcset` à la volée. La conversion **WebP** est servie automatiquement par Glide via négociation HTTP `Accept` (le navigateur reçoit du WebP s'il l'annonce, sinon le format d'origine) — pas besoin de forcer `format=webp` côté template. Toujours passer par Glide et par le composant `<x-responsive-image />` — jamais d'`<img>` brut sur un asset Statamic.
 
 **Injection des données dans les templates :**
 
@@ -206,6 +206,7 @@ Cela inclut, sans exception :
 - **Pas de commentaires** sauf quand ils expliquent un choix non évident. Pas de comment décoratif, pas de redite de ce que fait le code.
 - **Pas de commit automatique** — jamais de `git commit` sans demande explicite. Format quand demandé : `[Type] Short description` en français, sans `Co-Authored-By`.
 - **Design tokens obligatoires** — interdit de hardcoder une couleur, taille de police, espacement ou transition dans un composant. Toujours via `var(--token)` ou la classe Tailwind correspondante.
+- **Tout CSS custom dans `@layer components`** — composants et pages CSS doivent être enveloppés dans `@layer components { … }`. Sans layer, le CSS custom passe au-dessus du layer `utilities` de Tailwind dans la cascade et empêche les utilitaires (ex : `.hidden` toggleée par JS) de gagner. Exemples : `forms.css`, `buttons.css`, `pages/home/contact.css`.
 - **Pas de SVG brut dans les templates** — toujours un composant Blade (`<x-icons.* />`).
 - **Factorisation systématique** — dès qu'un pattern se répète (bouton, input, carte, surtitre, section…), créer un composant Blade dans `resources/views/components/` plutôt que dupliquer.
 
@@ -255,7 +256,7 @@ resources/
     ├── partials/           # seo-meta, structured-data, favicons
     ├── emails/             # contact.blade.php (template plain-text)
     └── components/
-        ├── icons/          # composants SVG (arrow-right, mail, phone, send, spinner, check)
+        ├── icons/          # composants SVG (arrow-right, check, clock, mail, map-pin, phone)
         ├── contact/        # sous-composants du formulaire (success-state, error-banner)
         ├── button.blade.php, nav.blade.php, footer.blade.php,
         └── overtitle.blade.php, section.blade.php, responsive-image.blade.php, ...
@@ -296,7 +297,7 @@ Le SEO est un **objectif business**, pas une option. À respecter systématiquem
 - Données structurées JSON-LD (`partials/structured-data.blade.php`) — Organization / ProfessionalService, BreadcrumbList, WebPage selon le contexte.
 - URLs propres, slugs explicites, pas de paramètres parasites.
 - `sitemap.xml` (servi par `SitemapController`) et `robots.txt` (route inline dans `routes/web.php`) cohérents.
-- Optimisation images : `alt` descriptifs (depuis le CMS), formats WebP via Glide, dimensions explicites pour éviter le CLS.
+- Optimisation images : `alt` descriptifs (depuis le CMS), WebP servi par Glide via négociation HTTP `Accept`, dimensions explicites pour éviter le CLS.
 
 > **🔧 À CUSTOMISER** — Adapter les `schema_*` du global `site` (description, SIREN, TVA, founder, sameAs, opening hours, price range, service types, areas served) au business client.
 
@@ -315,7 +316,7 @@ Le SEO est un **objectif business**, pas une option. À respecter systématiquem
 - Pas de dépendance superflue (auditer `package.json` avant tout ajout).
 - Polices : `font-display: swap`, preload des fichiers critiques, sous-ensembles `unicode-range`.
 - Lazy loading sur tout ce qui est sous la ligne de flottaison.
-- Images servies par Glide (WebP + `srcset`) via `<x-responsive-image />`.
+- Images servies par Glide via `<x-responsive-image />` — `srcset` multi-tailles + WebP négocié automatiquement (HTTP `Accept`).
 - JS minimal, pas d'animation bloquante au load (smooth-scroll et reveals lazy-loaded).
 
 ---
@@ -325,17 +326,20 @@ Le SEO est un **objectif business**, pas une option. À respecter systématiquem
 ### Formulaire de contact & envoi d'emails
 
 - **Route :** `POST /contact` (`routes/web.php`), throttled à **3 req/min** par IP, nommée `contact.store`.
-- **Validation :** `App\Http\Requests\ContactRequest` (FormRequest Laravel) — règles strictes (longueurs min/max, regex téléphone FR, `required_if` sur email/phone selon `preferred_contact`). Messages d'erreur en français définis dans `messages()`.
+- **Validation :** `App\Http\Requests\ContactRequest` (FormRequest Laravel) — règles strictes (longueurs min/max, regex téléphone FR). Tous les champs (prénom, nom, email, téléphone, message) sont **`required` inconditionnellement** dans le boilerplate. Messages d'erreur en français sourcés depuis le CMS (`contact.validation_messages`) via la méthode `messages()`.
 - **Anti-spam (silencieux côté UX) :**
   - **Honeypot** : champ caché `website` validé `prohibited` (un humain ne le remplit pas, un bot oui).
   - **Timestamp guard** : champ `form_loaded_at` injecté côté client (la page est statiquement cachée) — toute soumission < 2 secondes après chargement est rejetée.
 - **Envoi :**
   - `App\Mail\ContactMessage` (Mailable) — destinataire = `site.email` du CMS, sujet = `{email_subject_prefix} - {prénom nom}` (préfixe CMS).
-  - Si `preferred_contact === 'email'`, le `Reply-To` est défini sur l'email du contact.
+  - `Reply-To` défini sur l'email du contact dès qu'il est renseigné (toujours, puisque l'email est requis).
   - Template **plain text** (`resources/views/emails/contact.blade.php`) — labels et titre du mail entièrement sourcés depuis le CMS (`contact` global).
 - **Réponses :**
   - Requête AJAX (`X-Requested-With: XMLHttpRequest`) → JSON (`200`, `422` validation, `429` throttle, `503` mail failure).
   - Soumission classique (no-JS) → redirect `/#contact` avec flash session `contact_success` ou `contact_error` (state rendu côté Blade).
+- **UX succès / erreur (composants `resources/views/components/contact/`) :**
+  - `<x-contact.success-state>` — remplace entièrement le formulaire après envoi : icône check, titre (`success_title`), message (`success_message`) et fallback contact direct (téléphone + email tirés du global `site`, intro `success_contact_intro`). Affiché côté SSR sur `session('contact_success')`, ou côté JS via toggle `[data-contact-body].hidden` + `[data-contact-success]:not(.hidden)`.
+  - `<x-contact.error-banner>` — bandeau d'erreur global (display: none par défaut, classe `.is-visible` pour afficher). Rendu une seule fois dans le formulaire avec l'attribut `data-contact-error-banner` ; rempli côté SSR si `session('contact_error')`, et côté AJAX par le module `contact-form.js` pour les erreurs `429`, `503` ou de réseau.
 - **Logs :** échec d'envoi mail loggé via `Log::error` (jamais le contenu du message — seulement l'exception).
 
 ### Sitemap

@@ -76,14 +76,6 @@ tabs:
               validate:
                 - required
           -
-            handle: optional_label
-            field:
-              type: text
-              display: 'Libellé "optionnel"'
-              instructions: 'Affiché entre parenthèses après le libellé du champ téléphone.'
-              validate:
-                - required
-          -
             handle: label_message
             field:
               type: text
@@ -108,8 +100,16 @@ tabs:
     display: 'Messages'
     sections:
       -
-        display: 'Retours système'
+        display: 'Succès'
         fields:
+          -
+            handle: success_title
+            field:
+              type: text
+              display: 'Titre de succès'
+              instructions: 'Titre affiché après envoi (ex : "Message envoyé !").'
+              validate:
+                - required
           -
             handle: success_message
             field:
@@ -117,6 +117,15 @@ tabs:
               display: 'Message succès'
               validate:
                 - required
+          -
+            handle: success_contact_intro
+            field:
+              type: text
+              display: 'Intro contact direct'
+              instructions: 'Phrase introductive avant les coordonnées de contact direct (téléphone / email) affichées sous le message de succès. Laisser vide pour masquer.'
+      -
+        display: 'Erreurs'
+        fields:
           -
             handle: error_message
             field:

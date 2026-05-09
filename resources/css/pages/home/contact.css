@@ -1,72 +1,193 @@
-.contact-title {
-    text-align: center;
-    margin-bottom: var(--space-8);
-}
+@layer components {
+    .contact-title {
+        text-align: center;
+        margin-bottom: var(--space-8);
+    }
 
-.contact-form {
-    max-width: 600px;
-    margin-inline: auto;
-}
+    .contact-form {
+        max-width: 600px;
+        margin-inline: auto;
+    }
 
-[data-contact-body] {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-6);
-}
+    [data-contact-body] {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-6);
+    }
 
-.contact-submit {
-    margin-top: var(--space-2);
-}
+    [data-contact-form] [data-contact-success] {
+        display: none;
+    }
 
-.contact-hp {
-    position: absolute;
-    left: -9999px;
-    width: 1px;
-    height: 1px;
-    overflow: hidden;
-}
+    [data-contact-form][data-state="success"] [data-contact-body] {
+        display: none;
+    }
 
-.contact-banner {
-    display: none;
-    padding: var(--space-3) var(--space-4);
-    border: 1px solid var(--color-error);
-    color: var(--color-error);
-    border-radius: var(--radius-md);
-    font-size: var(--text-body-sm);
-}
+    [data-contact-form][data-state="success"] [data-contact-success] {
+        display: block;
+    }
 
-.contact-banner.is-visible {
-    display: block;
-}
+    .contact-hp {
+        position: absolute;
+        left: -9999px;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+    }
 
-.contact-submit {
-    align-self: flex-start;
-    padding: var(--space-3) var(--space-8);
-    background: var(--color-accent);
-    color: var(--color-white);
-    border: none;
-    border-radius: var(--radius-md);
-    font-family: var(--font-body);
-    font-size: var(--text-body);
-    font-weight: var(--weight-medium);
-    cursor: pointer;
-    transition: background-color var(--transition-quick);
-    min-height: var(--touch-target);
-}
+    .contact-error-banner {
+        padding: var(--space-3) var(--space-4);
+        border: 1px solid color-mix(in srgb, var(--color-error) 25%, transparent);
+        background-color: color-mix(in srgb, var(--color-error) 6%, transparent);
+        color: var(--color-error);
+        border-radius: var(--radius-md);
+        font-size: var(--text-body-sm);
+        display: none;
+    }
 
-.contact-submit:hover,
-.contact-submit:focus-visible {
-    background: var(--color-accent-hover);
-}
+    .contact-error-banner.is-visible {
+        display: block;
+    }
 
-.contact-submit[aria-busy="true"] {
-    opacity: 0.6;
-    cursor: progress;
-}
+    .contact-submit {
+        align-self: flex-start;
+        margin-top: var(--space-2);
+        padding: var(--space-3) var(--space-8);
+        background: var(--color-accent);
+        color: var(--color-white);
+        border: none;
+        border-radius: var(--radius-md);
+        font-family: var(--font-body);
+        font-size: var(--text-body);
+        font-weight: var(--weight-medium);
+        cursor: pointer;
+        transition: background-color var(--transition-quick);
+        min-height: var(--touch-target);
+    }
 
-.contact-success {
-    text-align: center;
-    padding: var(--space-6);
-    color: var(--color-success);
-    font-weight: var(--weight-medium);
+    .contact-submit:hover,
+    .contact-submit:focus-visible {
+        background: var(--color-accent-hover);
+    }
+
+    .contact-submit[aria-busy="true"] {
+        opacity: 0.6;
+        cursor: progress;
+    }
+
+    .contact-success {
+        text-align: center;
+        padding: clamp(2rem, 4vw, 3rem) var(--space-4);
+        max-width: 600px;
+        margin-inline: auto;
+    }
+
+    .contact-success-icon {
+        display: block;
+        width: 48px;
+        height: 48px;
+        margin: 0 auto var(--space-4);
+        color: var(--color-success);
+    }
+
+    .contact-success-title {
+        font-family: var(--font-heading);
+        font-size: var(--text-h3);
+        line-height: var(--leading-h3);
+        font-weight: var(--weight-bold);
+        color: var(--color-light-text);
+    }
+
+    [data-section-theme="dark"] .contact-success-title {
+        color: var(--color-dark-text);
+    }
+
+    .contact-success-message {
+        font-size: var(--text-body);
+        line-height: var(--leading-body);
+        color: var(--color-light-muted);
+        margin: var(--space-2) auto 0;
+        max-width: 40ch;
+    }
+
+    [data-section-theme="dark"] .contact-success-message {
+        color: var(--color-dark-muted);
+    }
+
+    .contact-success-fallback {
+        margin-top: var(--space-6);
+        padding-top: var(--space-6);
+        border-top: 1px solid var(--color-light-border);
+    }
+
+    [data-section-theme="dark"] .contact-success-fallback {
+        border-top-color: var(--color-dark-border);
+    }
+
+    .contact-success-fallback-intro {
+        font-size: var(--text-body-sm);
+        color: var(--color-light-muted);
+        margin-bottom: var(--space-3);
+    }
+
+    [data-section-theme="dark"] .contact-success-fallback-intro {
+        color: var(--color-dark-muted);
+    }
+
+    .contact-success-fallback-row {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: var(--space-3);
+    }
+
+    @media (min-width: 481px) {
+        .contact-success-fallback-row {
+            flex-direction: row;
+        }
+    }
+
+    .contact-success-fallback-item {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--space-2);
+        font-size: var(--text-body);
+        font-weight: var(--weight-medium);
+        color: var(--color-light-text);
+        text-decoration: none;
+        transition: color var(--transition-base);
+    }
+
+    [data-section-theme="dark"] .contact-success-fallback-item {
+        color: var(--color-dark-text);
+    }
+
+    .contact-success-fallback-item:hover,
+    .contact-success-fallback-item:focus-visible {
+        color: var(--color-accent);
+    }
+
+    .contact-success-fallback-item:focus-visible {
+        outline: var(--focus-ring-width) solid var(--color-accent);
+        outline-offset: var(--focus-ring-offset);
+        border-radius: var(--radius-sm);
+    }
+
+    .contact-success-fallback-separator {
+        display: none;
+    }
+
+    @media (min-width: 481px) {
+        .contact-success-fallback-separator {
+            display: block;
+            width: 1px;
+            height: 1.25rem;
+            background-color: var(--color-light-border);
+        }
+
+        [data-section-theme="dark"] .contact-success-fallback-separator {
+            background-color: var(--color-dark-border);
+        }
+    }
 }

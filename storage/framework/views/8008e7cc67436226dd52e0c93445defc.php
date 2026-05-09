@@ -162,31 +162,76 @@
             </h2>
 
             <?php if(session('contact_success')): ?>
-                <p class="contact-success"><?php echo e($contactGlobal->get('success_message')); ?></p>
+                <?php if (isset($component)) { $__componentOriginalaac76139a09c6ad52a9124f6083645e3 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalaac76139a09c6ad52a9124f6083645e3 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.contact.success-state','data' => ['contact' => $contactGlobal,'site' => $siteGlobal]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('contact.success-state'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['contact' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($contactGlobal),'site' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($siteGlobal)]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalaac76139a09c6ad52a9124f6083645e3)): ?>
+<?php $attributes = $__attributesOriginalaac76139a09c6ad52a9124f6083645e3; ?>
+<?php unset($__attributesOriginalaac76139a09c6ad52a9124f6083645e3); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalaac76139a09c6ad52a9124f6083645e3)): ?>
+<?php $component = $__componentOriginalaac76139a09c6ad52a9124f6083645e3; ?>
+<?php unset($__componentOriginalaac76139a09c6ad52a9124f6083645e3); ?>
+<?php endif; ?>
+                <?php if(app()->environment('production')): ?>
+                <script>
+                    window.plausible = window.plausible || function() { (window.plausible.q = window.plausible.q || []).push(arguments) };
+                    window.plausible('Contact Form Submit');
+                </script>
+                <?php endif; ?>
             <?php else: ?>
                 <form
-                action="<?php echo e(route('contact.store')); ?>"
-                method="POST"
-                class="contact-form"
-                data-contact-form
-                data-error-message="<?php echo e($contactGlobal->get('error_message')); ?>"
-                data-rate-limit-message="<?php echo e($contactGlobal->get('rate_limit_message')); ?>"
-                novalidate
-            >
-                <?php echo csrf_field(); ?>
+                    action="<?php echo e(route('contact.store')); ?>"
+                    method="POST"
+                    class="contact-form"
+                    data-contact-form
+                    data-state="idle"
+                    data-error-message="<?php echo e($contactGlobal->get('error_message')); ?>"
+                    data-rate-limit-message="<?php echo e($contactGlobal->get('rate_limit_message')); ?>"
+                    novalidate
+                >
+                    <?php echo csrf_field(); ?>
 
-                
-                <div class="contact-hp" aria-hidden="true">
-                    <input type="text" name="website" tabindex="-1" autocomplete="off">
-                </div>
+                    
+                    <div class="contact-hp" aria-hidden="true">
+                        <input type="text" name="website" tabindex="-1" autocomplete="off">
+                    </div>
 
-                
-                <input type="hidden" name="form_loaded_at" value="<?php echo e(time()); ?>">
+                    
+                    <input type="hidden" name="form_loaded_at" value="<?php echo e(time()); ?>">
 
-                <div data-contact-body>
-                    <p class="contact-banner <?php if(session('contact_error')): ?> is-visible <?php endif; ?>" data-contact-error-banner role="alert" aria-live="polite"><?php if(session('contact_error')): ?><?php echo e($contactGlobal->get('error_message')); ?><?php endif; ?></p>
+                    <div data-contact-body>
+                        <?php if (isset($component)) { $__componentOriginal2f2af8a67d5893a7ea6f982380d4321b = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginal2f2af8a67d5893a7ea6f982380d4321b = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.contact.error-banner','data' => ['dataContactErrorBanner' => true,'message' => session('contact_error') ? $contactGlobal->get('error_message') : null,'visible' => (bool) session('contact_error')]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('contact.error-banner'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['data-contact-error-banner' => true,'message' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute(session('contact_error') ? $contactGlobal->get('error_message') : null),'visible' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute((bool) session('contact_error'))]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginal2f2af8a67d5893a7ea6f982380d4321b)): ?>
+<?php $attributes = $__attributesOriginal2f2af8a67d5893a7ea6f982380d4321b; ?>
+<?php unset($__attributesOriginal2f2af8a67d5893a7ea6f982380d4321b); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginal2f2af8a67d5893a7ea6f982380d4321b)): ?>
+<?php $component = $__componentOriginal2f2af8a67d5893a7ea6f982380d4321b; ?>
+<?php unset($__componentOriginal2f2af8a67d5893a7ea6f982380d4321b); ?>
+<?php endif; ?>
 
-                    <?php if (isset($component)) { $__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $component; } ?>
+                        <?php if (isset($component)) { $__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form-field','data' => ['name' => 'first_name','label' => $contactGlobal->get('label_firstname'),'placeholder' => $contactGlobal->get('placeholder_firstname'),'required' => true,'autocomplete' => 'given-name']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('form-field'); ?>
@@ -207,7 +252,7 @@
 <?php unset($__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d); ?>
 <?php endif; ?>
 
-                    <?php if (isset($component)) { $__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $component; } ?>
+                        <?php if (isset($component)) { $__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form-field','data' => ['name' => 'last_name','label' => $contactGlobal->get('label_lastname'),'placeholder' => $contactGlobal->get('placeholder_lastname'),'required' => true,'autocomplete' => 'family-name']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('form-field'); ?>
@@ -228,7 +273,7 @@
 <?php unset($__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d); ?>
 <?php endif; ?>
 
-                    <?php if (isset($component)) { $__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $component; } ?>
+                        <?php if (isset($component)) { $__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form-field','data' => ['type' => 'email','name' => 'email','label' => $contactGlobal->get('label_email'),'placeholder' => $contactGlobal->get('placeholder_email'),'required' => true,'autocomplete' => 'email']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('form-field'); ?>
@@ -249,7 +294,7 @@
 <?php unset($__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d); ?>
 <?php endif; ?>
 
-                    <?php if (isset($component)) { $__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $component; } ?>
+                        <?php if (isset($component)) { $__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form-field','data' => ['type' => 'tel','name' => 'phone','label' => $contactGlobal->get('label_phone'),'placeholder' => $contactGlobal->get('placeholder_phone'),'required' => true,'autocomplete' => 'tel']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('form-field'); ?>
@@ -270,7 +315,7 @@
 <?php unset($__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d); ?>
 <?php endif; ?>
 
-                    <?php if (isset($component)) { $__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $component; } ?>
+                        <?php if (isset($component)) { $__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalf4c8ecf26ef77d4de25edf56eae3a34d = $attributes; } ?>
 <?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.form-field','data' => ['type' => 'textarea','name' => 'message','label' => $contactGlobal->get('label_message'),'placeholder' => $contactGlobal->get('placeholder_message'),'required' => true,'rows' => 5]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('form-field'); ?>
@@ -291,13 +336,33 @@
 <?php unset($__componentOriginalf4c8ecf26ef77d4de25edf56eae3a34d); ?>
 <?php endif; ?>
 
-                    <button type="submit" class="contact-submit" data-contact-submit>
-                        <?php echo e($contactGlobal->get('submit_label')); ?>
+                        <button type="submit" class="contact-submit" data-contact-submit>
+                            <?php echo e($contactGlobal->get('submit_label')); ?>
 
-                    </button>
-                </div>
+                        </button>
+                    </div>
 
-                    <p class="contact-success hidden" data-contact-success><?php echo e($contactGlobal->get('success_message')); ?></p>
+                    
+                    <?php if (isset($component)) { $__componentOriginalaac76139a09c6ad52a9124f6083645e3 = $component; } ?>
+<?php if (isset($attributes)) { $__attributesOriginalaac76139a09c6ad52a9124f6083645e3 = $attributes; } ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.contact.success-state','data' => ['contact' => $contactGlobal,'site' => $siteGlobal,'dataContactSuccess' => true]] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component->withName('contact.success-state'); ?>
+<?php if ($component->shouldRender()): ?>
+<?php $__env->startComponent($component->resolveView(), $component->data()); ?>
+<?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
+<?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
+<?php endif; ?>
+<?php $component->withAttributes(['contact' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($contactGlobal),'site' => \Illuminate\View\Compilers\BladeCompiler::sanitizeComponentAttribute($siteGlobal),'data-contact-success' => true]); ?>
+<?php echo $__env->renderComponent(); ?>
+<?php endif; ?>
+<?php if (isset($__attributesOriginalaac76139a09c6ad52a9124f6083645e3)): ?>
+<?php $attributes = $__attributesOriginalaac76139a09c6ad52a9124f6083645e3; ?>
+<?php unset($__attributesOriginalaac76139a09c6ad52a9124f6083645e3); ?>
+<?php endif; ?>
+<?php if (isset($__componentOriginalaac76139a09c6ad52a9124f6083645e3)): ?>
+<?php $component = $__componentOriginalaac76139a09c6ad52a9124f6083645e3; ?>
+<?php unset($__componentOriginalaac76139a09c6ad52a9124f6083645e3); ?>
+<?php endif; ?>
                 </form>
             <?php endif; ?>
         </div>

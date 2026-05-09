@@ -7,7 +7,6 @@ $__propNames = \Illuminate\View\ComponentAttributeBag::extractPropNames(([
     'type' => 'text',
     'placeholder' => null,
     'required' => false,
-    'optional' => null,
     'autocomplete' => null,
     'rows' => 5,
     'idPrefix' => 'contact',
@@ -32,7 +31,6 @@ foreach (array_filter(([
     'type' => 'text',
     'placeholder' => null,
     'required' => false,
-    'optional' => null,
     'autocomplete' => null,
     'rows' => 5,
     'idPrefix' => 'contact',
@@ -55,7 +53,7 @@ unset($__defined_vars, $__key, $__value); ?>
 
 <div class="form-group">
     <label class="form-label" for="<?php echo e($id); ?>">
-        <?php echo e($label); ?><?php if($required): ?><span class="form-label-required" aria-hidden="true">*</span><?php elseif($optional): ?><span class="form-label-optional">(<?php echo e($optional); ?>)</span><?php endif; ?>
+        <?php echo e($label); ?><?php if($required): ?><span class="form-label-required" aria-hidden="true">*</span><?php endif; ?>
     </label>
 
     <?php if($type === 'textarea'): ?>

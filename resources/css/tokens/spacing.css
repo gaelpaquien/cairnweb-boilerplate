@@ -49,6 +49,15 @@
   --transition-quick: 160ms ease-out;
   --transition-base: 0.3s ease;
   --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-spin: 0.6s;
+
+  /* Stagger delays — used for sequential reveal animations (mobile menu, lists) */
+  --stagger-1: 0.08s;
+  --stagger-2: 0.14s;
+  --stagger-3: 0.20s;
+  --stagger-4: 0.26s;
+  --stagger-5: 0.32s;
+  --stagger-6: 0.38s;
 
   /* Blur */
   --blur-card: 12px;

@@ -1,0 +1,2 @@
+<?php echo $__env->make('errors.minimal', ['code' => 404], array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+<?php /**PATH /Users/gaelpaquien/Documents/Lab/Perso/cairnweb/cairnweb-boilerplate/resources/views/errors/404.blade.php ENDPATH**/ ?>

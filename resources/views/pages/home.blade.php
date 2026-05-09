@@ -88,14 +88,15 @@
         $contactTheme = count($sectionItems) % 2 === 0 ? 'light' : 'dark';
     @endphp
     <x-section :theme="$contactTheme" id="contact" label="contact-heading">
-        <h2 id="contact-heading" class="contact-title">
-            {{ $contactGlobal->get('section_title') }}
-        </h2>
+        <div data-gsap="fade-up">
+            <h2 id="contact-heading" class="contact-title">
+                {{ $contactGlobal->get('section_title') }}
+            </h2>
 
-        @if(session('contact_success'))
-            <p class="contact-success">{{ $contactGlobal->get('success_message') }}</p>
-        @else
-            <form
+            @if(session('contact_success'))
+                <p class="contact-success">{{ $contactGlobal->get('success_message') }}</p>
+            @else
+                <form
                 action="{{ route('contact.store') }}"
                 method="POST"
                 class="contact-form"
@@ -165,9 +166,10 @@
                     </button>
                 </div>
 
-                <p class="contact-success hidden" data-contact-success>{{ $contactGlobal->get('success_message') }}</p>
-            </form>
-        @endif
+                    <p class="contact-success hidden" data-contact-success>{{ $contactGlobal->get('success_message') }}</p>
+                </form>
+            @endif
+        </div>
     </x-section>
 
 @endsection

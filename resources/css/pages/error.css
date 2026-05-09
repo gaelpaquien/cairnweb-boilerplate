@@ -1,0 +1,64 @@
+/* Sticky footer pattern: fill viewport so error section stretches
+ * to fill the space between navbar and footer. */
+body.is-error-page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+body.is-error-page main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding-top: var(--navbar-height-scrolled);
+}
+
+body.is-error-page main > [data-section] {
+    flex: 1;
+    display: flex;
+}
+
+body.is-error-page main > [data-section] .section-container {
+    flex: 1;
+    display: flex;
+}
+
+.error-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: var(--space-16);
+    padding-bottom: var(--space-16);
+    max-width: 640px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.error-code {
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    font-size: var(--text-display);
+    line-height: var(--leading-display);
+    letter-spacing: var(--tracking-tight);
+    color: var(--color-accent);
+}
+
+.error-heading {
+    font-size: var(--text-h2);
+    line-height: var(--leading-h2);
+    margin-top: var(--space-4);
+}
+
+.error-message {
+    font-size: var(--text-body-lg);
+    line-height: var(--leading-body-lg);
+    margin-top: var(--space-4);
+    color: var(--color-light-muted);
+}
+
+.error-actions {
+    margin-top: var(--space-8);
+}

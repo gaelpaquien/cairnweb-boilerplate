@@ -1,0 +1,7 @@
+skip_link_label: 'Aller au contenu'
+nav_aria_label: 'Navigation principale'
+nav_mobile_toggle_label: 'Ouvrir le menu'
+nav_mobile_panel_label: 'Menu de navigation'
+footer_aria_label: 'Pied de page'
+footer_nav_aria_label: 'Navigation secondaire'
+breadcrumb_home_label: 'Accueil'

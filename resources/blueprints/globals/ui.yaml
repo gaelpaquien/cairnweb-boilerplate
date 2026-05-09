@@ -1,0 +1,61 @@
+title: 'Micro-textes UI'
+tabs:
+  main:
+    display: 'Micro-textes'
+    sections:
+      -
+        display: 'Accessibilité & navigation'
+        fields:
+          -
+            handle: skip_link_label
+            field:
+              type: text
+              display: 'Lien "Aller au contenu"'
+              instructions: 'Affiché au focus clavier en haut de page (accessibilité)'
+              validate:
+                - required
+          -
+            handle: nav_aria_label
+            field:
+              type: text
+              display: 'Aria-label navigation principale'
+              validate:
+                - required
+          -
+            handle: nav_mobile_toggle_label
+            field:
+              type: text
+              display: 'Aria-label bouton menu mobile'
+              instructions: 'Ex : "Ouvrir le menu"'
+              validate:
+                - required
+          -
+            handle: nav_mobile_panel_label
+            field:
+              type: text
+              display: 'Aria-label panneau menu mobile'
+              validate:
+                - required
+          -
+            handle: footer_aria_label
+            field:
+              type: text
+              display: 'Aria-label pied de page'
+              validate:
+                - required
+          -
+            handle: footer_nav_aria_label
+            field:
+              type: text
+              display: 'Aria-label navigation footer'
+              instructions: 'Ex : Navigation secondaire'
+              validate:
+                - required
+          -
+            handle: breadcrumb_home_label
+            field:
+              type: text
+              display: 'Libellé fil d''Ariane (Accueil)'
+              instructions: 'Utilisé dans les BreadcrumbList des pages secondaires (mentions légales, etc.)'
+              validate:
+                - required

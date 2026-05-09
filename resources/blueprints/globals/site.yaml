@@ -1,0 +1,365 @@
+title: Site
+tabs:
+  main:
+    display: 'Informations générales'
+    sections:
+      -
+        fields:
+          -
+            handle: agency_name
+            field:
+              type: text
+              display: "Nom de l'agence"
+              validate:
+                - required
+          -
+            handle: email
+            field:
+              type: text
+              display: 'Email de contact'
+              validate:
+                - required
+          -
+            handle: phone
+            field:
+              type: text
+              display: 'Téléphone'
+          -
+            handle: address
+            field:
+              type: text
+              display: 'Adresse'
+              instructions: 'Ex: 10 Rue de la Paix, 75000 Paris, France'
+          -
+            handle: business_hours
+            field:
+              type: text
+              display: "Horaires d'ouverture"
+              instructions: 'Ex: Lun–Ven, 9h–18h'
+  navigation:
+    display: 'Navigation'
+    sections:
+      -
+        fields:
+          -
+            handle: nav_items
+            field:
+              type: grid
+              display: 'Liens de navigation'
+              fields:
+                -
+                  handle: label
+                  field:
+                    type: text
+                    display: 'Libellé'
+                    validate:
+                      - required
+                -
+                  handle: href
+                  field:
+                    type: text
+                    display: 'Ancre'
+                    validate:
+                      - required
+                    instructions: 'Ex: #services'
+          -
+            handle: nav_cta_text
+            field:
+              type: text
+              display: 'Texte du bouton CTA'
+              validate:
+                - required
+          -
+            handle: nav_cta_target
+            field:
+              type: text
+              display: 'Cible du bouton CTA'
+              instructions: 'Ex: #contact'
+  footer:
+    display: 'Footer'
+    sections:
+      -
+        fields:
+          -
+            handle: footer_text
+            field:
+              type: textarea
+              display: 'Texte footer'
+              instructions: 'Paragraphe descriptif sous le logo'
+              validate:
+                - required
+          -
+            handle: footer_nav_title
+            field:
+              type: text
+              display: 'Titre navigation footer'
+              instructions: 'Titre au-dessus des liens de navigation (ex: Navigation)'
+              validate:
+                - required
+          -
+            handle: footer_credit_prefix
+            field:
+              type: text
+              display: 'Préfixe signature développeur'
+              instructions: "Texte avant le nom de l'agence (ex: « Site réalisé par »). Le nom et le lien sont configurés ci-dessous."
+          -
+            handle: footer_credit_link_text
+            field:
+              type: text
+              display: "Nom de l'agence (lien)"
+              instructions: "Texte cliquable qui suit le préfixe (ex: Cairn Web). Laisser vide pour ne pas afficher la signature."
+          -
+            handle: footer_credit_url
+            field:
+              type: text
+              display: 'URL agence'
+              instructions: 'Lien associé au nom (ex: https://cairnweb.fr).'
+          -
+            handle: footer_copyright
+            field:
+              type: text
+              display: 'Texte copyright'
+              instructions: 'Texte complet avec placeholder {year} (remplacé automatiquement). Ex : © {year} PLACEHOLDER. Tous droits réservés.'
+              validate:
+                - required
+          -
+            handle: footer_extra_links
+            field:
+              type: grid
+              display: 'Liens supplémentaires footer'
+              instructions: 'Liens additionnels affichés après la navigation (actualités, blog, mentions légales, etc.)'
+              fields:
+                -
+                  handle: label
+                  field:
+                    type: text
+                    display: 'Libellé'
+                    validate:
+                      - required
+                -
+                  handle: href
+                  field:
+                    type: text
+                    display: 'URL'
+                    validate:
+                      - required
+                    instructions: 'Ex: /mentions-legales'
+  errors:
+    display: "Pages d'erreur"
+    sections:
+      -
+        fields:
+          -
+            handle: error_button_text
+            field:
+              type: text
+              display: 'Texte du bouton retour'
+              instructions: "Partagé par toutes les pages d'erreur (ex: Retour à l'accueil)"
+              validate:
+                - required
+          -
+            handle: errors
+            field:
+              type: grid
+              display: "Pages d'erreur"
+              mode: stacked
+              reorderable: false
+              instructions: "Une ligne par code HTTP (403, 404, 419, 429, 500, 503)"
+              fields:
+                -
+                  handle: code
+                  field:
+                    type: text
+                    display: 'Code HTTP'
+                    instructions: 'Ex: 404'
+                    validate:
+                      - required
+                    width: 25
+                -
+                  handle: meta_title
+                  field:
+                    type: text
+                    display: 'Titre meta'
+                    instructions: "Apparaît dans l'onglet navigateur"
+                    validate:
+                      - required
+                    width: 75
+                -
+                  handle: heading
+                  field:
+                    type: text
+                    display: 'Titre affiché'
+                    validate:
+                      - required
+                -
+                  handle: message
+                  field:
+                    type: textarea
+                    display: 'Message'
+                    validate:
+                      - required
+  seo:
+    display: 'SEO'
+    sections:
+      -
+        fields:
+          -
+            handle: theme_color
+            field:
+              type: text
+              display: 'Couleur du thème navigateur'
+              instructions: 'Couleur de la barre du navigateur mobile (hex, ex: #091D2B)'
+          -
+            handle: meta_title
+            field:
+              type: text
+              display: 'Titre meta par défaut'
+              validate:
+                - required
+              instructions: 'Titre affiché dans les résultats Google et onglet navigateur'
+          -
+            handle: meta_description
+            field:
+              type: textarea
+              display: 'Description meta par défaut'
+              validate:
+                - required
+              instructions: 'Description affichée dans les résultats Google (max ~160 caractères)'
+          -
+            handle: og_image
+            field:
+              type: assets
+              display: 'Image OG par défaut'
+              container: assets
+              max_files: 1
+              instructions: 'Image de partage réseaux sociaux (1200x630px, JPG)'
+          -
+            handle: site_locale
+            field:
+              type: text
+              display: 'Locale du site'
+              instructions: 'Format ISO avec tiret (ex : fr-FR). Utilisé pour <html lang>, og:locale (converti en fr_FR) et inLanguage des données structurées.'
+              validate:
+                - required
+          -
+            handle: google_site_verification
+            field:
+              type: text
+              display: 'Vérification Google Search Console'
+              instructions: "Code de v\xE9rification fourni par Google Search Console (contenu de l'attribut content de la balise meta). Laisser vide si non utilis\xE9."
+          -
+            handle: bing_site_verification
+            field:
+              type: text
+              display: 'Vérification Bing Webmaster Tools'
+              instructions: "Code de v\xE9rification fourni par Bing Webmaster Tools. Laisser vide si non utilis\xE9."
+  schema:
+    display: 'Données structurées'
+    sections:
+      -
+        fields:
+          -
+            handle: schema_description
+            field:
+              type: textarea
+              display: 'Description pour Google'
+              instructions: 'Description utilisée dans les données structurées Schema.org'
+          -
+            handle: legal_founder_name
+            field:
+              type: text
+              display: 'Nom du fondateur'
+              instructions: 'Nom complet du fondateur, utilisé pour le founder dans le JSON-LD (ex: John Doe)'
+          -
+            handle: legal_siren
+            field:
+              type: text
+              display: 'SIREN'
+              instructions: 'Utilisé comme taxID dans le JSON-LD. Ex: 844 466 441'
+          -
+            handle: legal_vat_id
+            field:
+              type: text
+              display: 'Numéro de TVA intracommunautaire'
+              instructions: 'Utilisé comme vatID dans le JSON-LD. Ex: FR89844466441'
+          -
+            handle: same_as
+            field:
+              type: taggable
+              display: "Profils externes de l'agence (sameAs)"
+              instructions: "URLs identifiant l'agence elle-m\xEAme (LinkedIn entreprise, Google Business Profile, Pages Jaunes, etc.). Pour les profils personnels du fondateur, utiliser le champ d\xE9di\xE9 ci-dessous."
+          -
+            handle: legal_founder_same_as
+            field:
+              type: taggable
+              display: 'Profils externes du fondateur (founder.sameAs)'
+              instructions: "URLs identifiant le fondateur en tant que personne (LinkedIn perso, Malt, GitHub, etc.). S\xE9par\xE9 du sameAs de l'agence pour distinguer les deux identit\xE9s dans le JSON-LD."
+          -
+            handle: schema_opening_hours
+            field:
+              type: text
+              display: 'Horaires (format Schema.org)'
+              instructions: 'Ex: Mo-Fr 09:00-18:00'
+          -
+            handle: schema_price_range
+            field:
+              type: text
+              display: 'Gamme de prix'
+              instructions: 'Ex: €€'
+          -
+            handle: schema_service_types
+            field:
+              type: taggable
+              display: 'Types de services'
+              instructions: 'Liste des services proposés pour Google'
+          -
+            handle: schema_areas_served
+            field:
+              type: taggable
+              display: 'Zones desservies'
+              instructions: 'Liste des zones pour les données structurées'
+          -
+            handle: schema_logo
+            field:
+              type: assets
+              display: 'Logo pour Google'
+              container: assets
+              max_files: 1
+              instructions: 'Logo de l''agence pour Google Knowledge Panel (PNG transparent recommandé, ~512x512)'
+  favicons:
+    display: 'Favicons'
+    sections:
+      -
+        fields:
+          -
+            handle: favicon_ico
+            field:
+              type: assets
+              display: 'Favicon ICO'
+              container: assets
+              max_files: 1
+              instructions: 'Fichier .ico (multi-résolution, 48x48 min)'
+          -
+            handle: favicon_32
+            field:
+              type: assets
+              display: 'Favicon 32x32'
+              container: assets
+              max_files: 1
+              instructions: 'PNG 32x32px'
+          -
+            handle: favicon_16
+            field:
+              type: assets
+              display: 'Favicon 16x16'
+              container: assets
+              max_files: 1
+              instructions: 'PNG 16x16px'
+          -
+            handle: apple_touch_icon
+            field:
+              type: assets
+              display: 'Apple Touch Icon'
+              container: assets
+              max_files: 1
+              instructions: 'PNG 180x180px'

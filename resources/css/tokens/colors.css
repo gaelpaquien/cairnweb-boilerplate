@@ -1,0 +1,28 @@
+:root {
+  /* Dark sections — Neutral dark gray */
+  --color-dark-bg: #1F2937;
+  --color-dark-surface: #374151;
+  --color-dark-border: #4B5563;
+  --color-dark-text: #F9FAFB;
+  --color-dark-muted: #9CA3AF;
+
+  /* Footer — Bien plus dark que les sections dark pour ressortir */
+  --color-footer-bg: #030712;
+  --color-footer-border: #1F2937;
+
+  /* Light sections — Neutral white/light gray */
+  --color-light-bg: #FFFFFF;
+  --color-light-surface: #F9FAFB;
+  --color-light-border: #E5E7EB;
+  --color-light-text: #111827;
+  --color-light-muted: #6B7280;
+
+  /* Accent — Neutral blue (à remplacer par la couleur de marque du projet client) */
+  --color-accent: #2563EB;
+  --color-accent-hover: #1D4ED8;
+  --color-success: #16A34A;
+  --color-error: #DC2626;
+
+  /* Neutrals */
+  --color-white: #FFFFFF;
+}

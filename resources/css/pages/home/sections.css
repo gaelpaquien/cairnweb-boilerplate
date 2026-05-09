@@ -1,0 +1,19 @@
+.generic-section {
+    max-width: 800px;
+    margin-inline: auto;
+    text-align: center;
+}
+
+.generic-section-title {
+    font-size: clamp(1.625rem, 3vw, 2.5rem);
+    line-height: 1.2;
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+    margin-top: var(--space-3);
+}
+
+.generic-section-content {
+    margin-top: var(--space-6);
+    font-size: clamp(1rem, 1.2vw, 1.125rem);
+    line-height: 1.7;
+}

@@ -1,0 +1,22 @@
+title: "Section 4"
+tabs:
+  main:
+    display: 'Contenu'
+    sections:
+      -
+        fields:
+          -
+            handle: title
+            field:
+              type: text
+              display: 'Titre H2'
+              validate:
+                - required
+          -
+            handle: content
+            field:
+              type: textarea
+              display: 'Contenu'
+              validate:
+                - required
+              instructions: 'Texte principal de la section.'

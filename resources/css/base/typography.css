@@ -1,0 +1,74 @@
+@layer base {
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+    font-weight: var(--weight-bold);
+  }
+
+  h1 {
+    font-size: var(--text-h1);
+    line-height: var(--leading-h1);
+  }
+
+  h2 {
+    font-size: var(--text-h2);
+    line-height: var(--leading-h2);
+  }
+
+  h3 {
+    font-size: var(--text-h3);
+    line-height: var(--leading-h3);
+  }
+
+  p {
+    margin-bottom: var(--space-4);
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  a {
+    transition: color var(--transition-base);
+  }
+}
+
+.overtitle {
+  display: block;
+  font-family: var(--font-body);
+  font-size: var(--text-overtitle);
+  font-weight: var(--weight-semibold);
+  text-transform: uppercase;
+  letter-spacing: var(--tracking-wider);
+  line-height: var(--leading-body-sm);
+  margin-bottom: var(--space-4);
+}
+
+[data-section-theme="dark"] .overtitle {
+  color: var(--color-accent);
+}
+
+[data-section-theme="light"] .overtitle {
+  color: var(--color-light-muted);
+}
+
+.prose {
+  --tw-prose-body: currentColor;
+  --tw-prose-headings: currentColor;
+}
+
+.prose h2,
+.prose h3 {
+  font-family: var(--font-heading);
+  font-weight: var(--weight-bold);
+}
+
+.prose a {
+  color: var(--color-accent);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color var(--transition-base);
+}
+
+.prose a:hover {
+  color: var(--color-accent-hover);
+}

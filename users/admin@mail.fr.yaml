@@ -1,0 +1,8 @@
+name: Admin
+super: true
+id: 1dfeff7d-d90a-4dc0-a6af-a8b0d2aaf03c
+password_hash: $2y$12$SBfxI0lS1ZH6jVZ9Ospg2uA2Uo9l2bmx5wnF.twaDxGe0O7h2wmLK
+preferences:
+  collections:
+    pages:
+      view: tree

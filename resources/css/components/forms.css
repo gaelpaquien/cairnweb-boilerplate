@@ -1,0 +1,89 @@
+@layer components {
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2);
+  }
+
+  .form-label {
+    font-family: var(--font-body);
+    font-size: var(--text-body-sm);
+    font-weight: var(--weight-medium);
+    color: var(--color-light-text);
+  }
+
+  [data-section-theme="dark"] .form-label {
+    color: var(--color-dark-text);
+  }
+
+  .form-label-required {
+    color: var(--color-error);
+    margin-left: 0.15rem;
+  }
+
+  .form-label-optional {
+    color: var(--color-light-muted);
+    font-weight: var(--weight-regular);
+    margin-left: 0.35rem;
+  }
+
+  [data-section-theme="dark"] .form-label-optional {
+    color: var(--color-dark-muted);
+  }
+
+  .form-input {
+    width: 100%;
+    min-height: var(--touch-target);
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    line-height: var(--leading-body);
+    padding: 0.75rem 1rem;
+    border: var(--border-width-thick) solid var(--color-light-border);
+    border-radius: var(--radius-md);
+    background-color: var(--color-light-surface);
+    color: var(--color-light-text);
+    transition: border-color var(--transition-base);
+  }
+
+  textarea.form-input {
+    min-height: 120px;
+    resize: vertical;
+  }
+
+  .form-input::placeholder {
+    color: var(--color-light-muted);
+  }
+
+  .form-input:focus,
+  .form-input:focus-visible {
+    border-color: var(--color-accent);
+    outline: none;
+    box-shadow: none;
+  }
+
+  [data-section-theme="dark"] .form-input {
+    border-color: var(--color-dark-border);
+    background-color: var(--color-dark-surface);
+    color: var(--color-dark-text);
+  }
+
+  [data-section-theme="dark"] .form-input::placeholder {
+    color: var(--color-dark-muted);
+  }
+
+  .form-input[data-state="invalid"] {
+    border-color: var(--color-error);
+  }
+
+  .form-error {
+    display: none;
+    font-size: var(--text-body-sm);
+    color: var(--color-error);
+    margin-top: var(--space-1);
+    pointer-events: none;
+  }
+
+  .form-error.is-visible {
+    display: block;
+  }
+}

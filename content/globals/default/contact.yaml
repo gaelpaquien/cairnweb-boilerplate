@@ -1,0 +1,91 @@
+section_title: 'CONTACT'
+label_firstname: 'Prénom'
+placeholder_firstname: 'John'
+label_lastname: 'Nom'
+placeholder_lastname: 'Doe'
+label_email: 'Adresse email'
+placeholder_email: 'john.doe@mail.fr'
+label_phone: 'Téléphone'
+placeholder_phone: '0102030405'
+optional_label: 'optionnel'
+label_message: 'Votre message'
+placeholder_message: 'Lorem ipsum dolor sit amet…'
+submit_label: 'Envoyer'
+success_message: 'Merci pour votre message ! Nous reviendrons vers vous rapidement.'
+error_message: "L'envoi a échoué. Veuillez réessayer."
+rate_limit_message: 'Trop de tentatives. Merci de patienter quelques minutes.'
+email_subject_prefix: '[PLACEHOLDER] Nouveau message'
+email_intro_text: 'Nouveau message de contact — PLACEHOLDER'
+validation_messages:
+  -
+    id: val-fn-req
+    key: first_name.required
+    message: 'Le prénom est requis.'
+  -
+    id: val-fn-min
+    key: first_name.min
+    message: 'Le prénom doit contenir au moins 2 caractères.'
+  -
+    id: val-fn-max
+    key: first_name.max
+    message: 'Le prénom ne doit pas dépasser 100 caractères.'
+  -
+    id: val-ln-req
+    key: last_name.required
+    message: 'Le nom est requis.'
+  -
+    id: val-ln-min
+    key: last_name.min
+    message: 'Le nom doit contenir au moins 2 caractères.'
+  -
+    id: val-ln-max
+    key: last_name.max
+    message: 'Le nom ne doit pas dépasser 100 caractères.'
+  -
+    id: val-em-req
+    key: email.required
+    message: "L'adresse email est requise."
+  -
+    id: val-em-email
+    key: email.email
+    message: "L'adresse email n'est pas valide."
+  -
+    id: val-em-max
+    key: email.max
+    message: "L'email ne doit pas dépasser 255 caractères."
+  -
+    id: val-ph-req
+    key: phone.required
+    message: 'Le numéro de téléphone est requis.'
+  -
+    id: val-ph-max
+    key: phone.max
+    message: 'Le téléphone ne doit pas dépasser 30 caractères.'
+  -
+    id: val-ph-regex
+    key: phone.regex
+    message: 'Le numéro de téléphone doit être un numéro français valide.'
+  -
+    id: val-msg-req
+    key: message.required
+    message: 'Le message est requis.'
+  -
+    id: val-msg-min
+    key: message.min
+    message: 'Le message doit contenir au moins 10 caractères.'
+  -
+    id: val-msg-max
+    key: message.max
+    message: 'Le message ne doit pas dépasser 5000 caractères.'
+  -
+    id: val-fl-req
+    key: form_loaded_at.required
+    message: 'Formulaire invalide. Veuillez recharger la page.'
+  -
+    id: val-fl-int
+    key: form_loaded_at.integer
+    message: 'Formulaire invalide. Veuillez recharger la page.'
+  -
+    id: val-fl-fast
+    key: form_loaded_at.too_fast
+    message: 'Soumission trop rapide. Veuillez réessayer.'

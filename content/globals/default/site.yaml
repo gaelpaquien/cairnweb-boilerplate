@@ -1,0 +1,104 @@
+agency_name: PLACEHOLDER
+email: john.doe@mail.fr
+phone: '0102030405'
+address: '10 Rue de la Paix, 75000 Paris, France'
+business_hours: 'Lun–Ven, 9h–18h'
+nav_items:
+  -
+    id: nav_section_1
+    label: 'Section 1'
+    href: '#section-1'
+  -
+    id: nav_section_2
+    label: 'Section 2'
+    href: '#section-2'
+  -
+    id: nav_section_3
+    label: 'Section 3'
+    href: '#section-3'
+  -
+    id: nav_section_4
+    label: 'Section 4'
+    href: '#section-4'
+  -
+    id: nav_contact
+    label: Contact
+    href: '#contact'
+nav_cta_text: 'Nous contacter'
+nav_cta_target: '#contact'
+footer_text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+footer_nav_title: Navigation
+footer_credit_prefix: 'Ce site web est réalisé par '
+footer_credit_link_text: 'Cairn Web'
+footer_credit_url: 'https://cairnweb.fr'
+footer_copyright: '© {year} PLACEHOLDER. Tous droits réservés.'
+footer_extra_links:
+  -
+    id: foot_mentions
+    label: 'Mentions légales'
+    href: /mentions-legales
+  -
+    id: foot_confidentialite
+    label: 'Politique de confidentialité'
+    href: /politique-confidentialite
+error_button_text: "Retour à l'accueil"
+errors:
+  -
+    id: err403
+    code: '403'
+    meta_title: 'Accès refusé'
+    heading: 'Accès refusé'
+    message: "Vous n'avez pas l'autorisation d'accéder à cette page."
+  -
+    id: err404
+    code: '404'
+    meta_title: 'Page introuvable'
+    heading: 'Page introuvable'
+    message: "La page que vous cherchez n'existe pas ou a été déplacée."
+  -
+    id: err419
+    code: '419'
+    meta_title: 'Session expirée'
+    heading: 'Session expirée'
+    message: 'Votre session a expiré par sécurité. Merci de rafraîchir la page et de réessayer.'
+  -
+    id: err429
+    code: '429'
+    meta_title: 'Trop de requêtes'
+    heading: 'Trop de requêtes'
+    message: 'Vous avez effectué trop de requêtes en peu de temps. Merci de patienter quelques instants avant de réessayer.'
+  -
+    id: err500
+    code: '500'
+    meta_title: 'Erreur serveur'
+    heading: 'Une erreur est survenue'
+    message: 'Un problème technique nous empêche de répondre. Nous travaillons à le résoudre, merci de réessayer dans quelques instants.'
+  -
+    id: err503
+    code: '503'
+    meta_title: 'Maintenance en cours'
+    heading: 'Maintenance en cours'
+    message: 'Le site est momentanément indisponible pour maintenance. Il sera de retour très vite.'
+theme_color: '#1F2937'
+meta_title: 'PLACEHOLDER — Lorem ipsum dolor sit amet'
+meta_description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+site_locale: fr-FR
+google_site_verification: ''
+bing_site_verification: ''
+schema_description: 'PLACEHOLDER — lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+legal_founder_name: 'John Doe'
+legal_siren: ''
+legal_vat_id: ''
+same_as: {  }
+legal_founder_same_as: {  }
+schema_opening_hours: 'Mo-Fr 09:00-18:00'
+schema_price_range: '€€'
+schema_service_types: {  }
+schema_areas_served:
+  - France
+  - Paris
+schema_logo: ''
+favicon_ico: ''
+favicon_32: ''
+favicon_16: ''
+apple_touch_icon: ''

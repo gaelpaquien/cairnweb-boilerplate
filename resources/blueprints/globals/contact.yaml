@@ -1,0 +1,187 @@
+title: Contact
+tabs:
+  main:
+    display: 'Contenu'
+    sections:
+      -
+        display: 'En-tête'
+        fields:
+          -
+            handle: section_title
+            field:
+              type: text
+              display: 'Titre de section'
+              validate:
+                - required
+  form:
+    display: 'Formulaire'
+    sections:
+      -
+        display: 'Libellés & placeholders'
+        fields:
+          -
+            handle: label_firstname
+            field:
+              type: text
+              display: 'Libellé Prénom'
+              validate:
+                - required
+          -
+            handle: placeholder_firstname
+            field:
+              type: text
+              display: 'Placeholder Prénom'
+              validate:
+                - required
+          -
+            handle: label_lastname
+            field:
+              type: text
+              display: 'Libellé Nom'
+              validate:
+                - required
+          -
+            handle: placeholder_lastname
+            field:
+              type: text
+              display: 'Placeholder Nom'
+              validate:
+                - required
+          -
+            handle: label_email
+            field:
+              type: text
+              display: 'Libellé Email'
+              validate:
+                - required
+          -
+            handle: placeholder_email
+            field:
+              type: text
+              display: 'Placeholder Email'
+              validate:
+                - required
+          -
+            handle: label_phone
+            field:
+              type: text
+              display: 'Libellé Téléphone'
+              validate:
+                - required
+          -
+            handle: placeholder_phone
+            field:
+              type: text
+              display: 'Placeholder Téléphone'
+              validate:
+                - required
+          -
+            handle: optional_label
+            field:
+              type: text
+              display: 'Libellé "optionnel"'
+              instructions: 'Affiché entre parenthèses après le libellé du champ téléphone.'
+              validate:
+                - required
+          -
+            handle: label_message
+            field:
+              type: text
+              display: 'Libellé Message'
+              validate:
+                - required
+          -
+            handle: placeholder_message
+            field:
+              type: text
+              display: 'Placeholder Message'
+              validate:
+                - required
+          -
+            handle: submit_label
+            field:
+              type: text
+              display: 'Texte du bouton'
+              validate:
+                - required
+  messages:
+    display: 'Messages'
+    sections:
+      -
+        display: 'Retours système'
+        fields:
+          -
+            handle: success_message
+            field:
+              type: textarea
+              display: 'Message succès'
+              validate:
+                - required
+          -
+            handle: error_message
+            field:
+              type: textarea
+              display: 'Message erreur'
+              validate:
+                - required
+          -
+            handle: rate_limit_message
+            field:
+              type: textarea
+              display: 'Message rate limit'
+              validate:
+                - required
+  notifications:
+    display: 'Notification email'
+    sections:
+      -
+        display: 'Email envoyé'
+        fields:
+          -
+            handle: email_subject_prefix
+            field:
+              type: text
+              display: 'Préfixe du sujet'
+              instructions: 'Préfixe du sujet du mail de notification, suivi de "- Prénom Nom". Ex : [PLACEHOLDER] Nouveau message'
+              validate:
+                - required
+          -
+            handle: email_intro_text
+            field:
+              type: text
+              display: 'Titre du mail'
+              instructions: 'Première ligne du mail (avant le détail des champs)'
+              validate:
+                - required
+  validations:
+    display: 'Validation'
+    sections:
+      -
+        display: 'Messages d''erreur sous les champs'
+        fields:
+          -
+            handle: validation_messages
+            field:
+              type: grid
+              display: 'Messages de validation'
+              instructions: 'Messages affichés sous les champs du formulaire en cas d''erreur. La clé technique ne doit pas être modifiée.'
+              mode: stacked
+              reorderable: false
+              fields:
+                -
+                  handle: key
+                  field:
+                    type: text
+                    display: 'Clé technique'
+                    instructions: 'Ne pas modifier — ex : first_name.required'
+                    width: 33
+                    validate:
+                      - required
+                -
+                  handle: message
+                  field:
+                    type: text
+                    display: 'Message affiché'
+                    width: 67
+                    validate:
+                      - required

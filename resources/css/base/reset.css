@@ -1,0 +1,40 @@
+@layer base {
+  [id] {
+    scroll-margin-top: var(--navbar-height);
+  }
+
+  html {
+    background-color: var(--color-light-bg);
+    overflow-x: clip;
+  }
+
+  body {
+    font-family: var(--font-body);
+    font-size: var(--text-body);
+    font-weight: var(--weight-regular);
+    line-height: var(--leading-body);
+    color: var(--color-light-text);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: clip;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  img,
+  picture,
+  video,
+  svg {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+.skip-link {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}

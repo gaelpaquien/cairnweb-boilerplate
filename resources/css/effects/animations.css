@@ -1,0 +1,62 @@
+[data-gsap],
+[data-gsap="batch"] > * {
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-gsap],
+  [data-gsap="batch"] > * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.no-js [data-gsap],
+.no-js [data-gsap="batch"] > * {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-animate],
+  [data-hero-visual] {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
+
+.no-js [data-hero-animate],
+.no-js [data-hero-visual] {
+  opacity: 1 !important;
+  transform: none !important;
+}
+
+
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root) {
+  animation: vt-fade-out var(--transition-quick) forwards;
+}
+
+::view-transition-new(root) {
+  animation: vt-fade-in var(--transition-quick) forwards;
+}
+
+@keyframes vt-fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+@keyframes vt-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation-duration: 0.01s;
+  }
+}

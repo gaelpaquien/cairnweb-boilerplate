@@ -1,0 +1,49 @@
+title: Hero
+tabs:
+  main:
+    display: 'Contenu principal'
+    sections:
+      -
+        fields:
+          -
+            handle: overtitle
+            field:
+              type: text
+              display: 'Sur-titre'
+              instructions: "Court texte en majuscules au-dessus du titre (ex: Bienvenue)"
+          -
+            handle: title
+            field:
+              type: text
+              display: 'Titre principal H1'
+              validate:
+                - required
+              instructions: 'Max ~8 mots'
+          -
+            handle: title_accent
+            field:
+              type: text
+              display: 'Partie accentuée du titre'
+              instructions: 'Portion du titre mise en avant avec la couleur accent (laisser vide si non utilisé)'
+          -
+            handle: subtitle
+            field:
+              type: textarea
+              display: 'Sous-titre'
+              validate:
+                - required
+              instructions: 'Proposition de valeur, max ~30 mots'
+          -
+            handle: cta_primary_text
+            field:
+              type: text
+              display: 'Texte CTA principal'
+              validate:
+                - required
+          -
+            handle: cta_primary_target
+            field:
+              type: text
+              display: 'Cible CTA principal'
+              instructions: 'Ancre interne (#contact) ou URL'
+              default: '#contact'

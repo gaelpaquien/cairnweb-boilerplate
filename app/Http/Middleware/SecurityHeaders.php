@@ -1,0 +1,58 @@
+<?php
+
+namespace App\Http\Middleware;
+
+use Closure;
+use Illuminate\Http\Request;
+use Symfony\Component\HttpFoundation\Response;
+
+class SecurityHeaders
+{
+    public function handle(Request $request, Closure $next): Response
+    {
+        $response = $next($request);
+
+        $response->headers->set('X-Content-Type-Options', 'nosniff');
+        $response->headers->set('X-Frame-Options', 'DENY');
+        $response->headers->set('Referrer-Policy', 'strict-origin-when-cross-origin');
+        $response->headers->set('Permissions-Policy', 'camera=(), microphone=(), geolocation=(), payment=()');
+
+        // Skip CSP for Statamic Control Panel (requires data: scripts + eval)
+        if ($request->is('cp*')) {
+            return $response;
+        }
+
+        $hotFile = public_path('hot');
+        $viteDevServer = '';
+        $viteWss = '';
+
+        if (app()->environment('local') && file_exists($hotFile)) {
+            $viteUrl = trim(file_get_contents($hotFile));
+            $viteDevServer = " {$viteUrl}";
+            $viteWss = ' '.preg_replace('#^https?://#', 'wss://', $viteUrl);
+        }
+
+        $response->headers->set(
+            'Content-Security-Policy',
+            "default-src 'self'; "
+            ."script-src 'self' 'unsafe-inline' https://plausible.io{$viteDevServer}; "
+            ."style-src 'self' 'unsafe-inline' https://fonts.googleapis.com{$viteDevServer}; "
+            ."font-src 'self' https://fonts.gstatic.com{$viteDevServer}; "
+            ."img-src 'self' data:; "
+            ."connect-src 'self' https://plausible.io{$viteDevServer}{$viteWss}; "
+            ."worker-src 'self' blob:; "
+            ."object-src 'none'; "
+            ."base-uri 'self'; "
+            ."frame-ancestors 'none';"
+        );
+
+        if (app()->environment('production')) {
+            $response->headers->set(
+                'Strict-Transport-Security',
+                'max-age=31536000; includeSubDomains'
+            );
+        }
+
+        return $response;
+    }
+}

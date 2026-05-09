@@ -1,0 +1,111 @@
+@layer components {
+  [data-section] {
+    position: relative;
+    width: 100%;
+  }
+
+  [data-section][id] {
+    scroll-margin-top: var(--navbar-height-scrolled);
+  }
+
+  [data-section][data-padding="default"] {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+  }
+
+  [data-section][data-padding="compact"] {
+    padding-top: clamp(1.75rem, 3.5vw, 3.5rem);
+    padding-bottom: clamp(1.75rem, 3.5vw, 3.5rem);
+  }
+
+  [data-section][data-padding="none"] {
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  [data-section-theme="dark"] {
+    background-color: var(--color-dark-bg);
+    color: var(--color-dark-text);
+  }
+
+  [data-section-theme="dark"] h1,
+  [data-section-theme="dark"] h2,
+  [data-section-theme="dark"] h3 {
+    color: var(--color-dark-text);
+  }
+
+  [data-section-theme="dark"] p,
+  [data-section-theme="dark"] li {
+    color: var(--color-dark-muted);
+  }
+
+  [data-section-theme="light"] {
+    background-color: var(--color-light-bg);
+    color: var(--color-light-text);
+  }
+
+  [data-section-theme="light"] h1,
+  [data-section-theme="light"] h2,
+  [data-section-theme="light"] h3 {
+    color: var(--color-light-text);
+  }
+
+  [data-section-theme="light"] p,
+  [data-section-theme="light"] li {
+    color: var(--color-light-muted);
+  }
+
+  .section-container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: var(--container-max);
+    padding-left: var(--container-padding-mobile);
+    padding-right: var(--container-padding-mobile);
+    position: relative;
+    z-index: 2;
+  }
+
+  @media (min-width: 768px) {
+    .section-container {
+      padding-left: var(--container-padding);
+      padding-right: var(--container-padding);
+    }
+  }
+
+}
+
+/* Legal pages overrides — outside @layer for max priority vs Tailwind Typography.
+ * Legal pages force the navbar into its compact/solid state via data-force-solid,
+ * so we offset <main> by the scrolled navbar height. */
+body.is-legal-page main {
+  padding-top: var(--navbar-height-scrolled);
+}
+
+.is-legal-page [data-section].legal-section p,
+.is-legal-page [data-section].legal-section li,
+.is-legal-page [data-section].legal-section .prose p,
+.is-legal-page [data-section].legal-section .prose li {
+  color: var(--color-light-text);
+}
+
+.is-legal-page [data-section].legal-section .prose {
+  --tw-prose-bullets: var(--color-light-text);
+  --tw-prose-counters: var(--color-light-text);
+}
+
+.is-legal-page [data-section].legal-section .prose ul > li::marker,
+.is-legal-page [data-section].legal-section .prose ol > li::marker,
+.is-legal-page [data-section].legal-section li::marker {
+  color: var(--color-light-text);
+}
+
+.is-legal-page [data-section].legal-section .prose a {
+  color: var(--color-light-text);
+  text-decoration: underline;
+  transition: opacity var(--transition-base);
+}
+
+.is-legal-page [data-section].legal-section .prose a:hover {
+  color: var(--color-light-text);
+  opacity: 0.65;
+}

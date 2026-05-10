@@ -1,26 +1,28 @@
-.site-logo {
-    display: inline-block;
-    font-family: var(--font-heading);
-    font-size: var(--text-logo);
-    letter-spacing: var(--tracking-tight);
-    line-height: 1;
-    text-decoration: none;
-    color: var(--color-dark-text);
-    transition: opacity var(--transition-base), transform var(--transition-base);
-}
-
-@media (hover: hover) {
-    .site-logo:hover {
-        opacity: 0.8;
-        transform: scale(1.03);
+@layer components {
+    .site-logo {
+        display: inline-block;
+        font-family: var(--font-heading);
+        font-size: var(--text-logo);
+        letter-spacing: var(--tracking-tight);
+        line-height: 1;
+        text-decoration: none;
+        color: var(--color-dark-text);
+        transition: opacity var(--transition-base), transform var(--transition-base);
     }
-}
 
-.site-logo-strong {
-    font-weight: var(--weight-black);
-}
+    @media (hover: hover) {
+        .site-logo:hover {
+            opacity: var(--opacity-hover);
+            transform: scale(var(--scale-hover));
+        }
+    }
 
-.site-logo-light {
-    font-weight: var(--weight-bold);
-    opacity: 0.7;
+    .site-logo-strong {
+        font-weight: var(--weight-black);
+    }
+
+    .site-logo-light {
+        font-weight: var(--weight-bold);
+        opacity: var(--opacity-muted);
+    }
 }

@@ -27,6 +27,10 @@
         display: block;
     }
 
+    /* Honeypot — standard accessibility-hidden pattern (off-screen, near-zero size).
+       Values are intentionally absolute: bots that auto-fill known field names need
+       the input to remain a real, focusable form field, so we cannot use display:none
+       or Tailwind's sr-only (which would also announce the field to screen readers). */
     .contact-hp {
         position: absolute;
         left: -9999px;
@@ -71,7 +75,7 @@
     }
 
     .contact-submit[aria-busy="true"] {
-        opacity: 0.6;
+        opacity: var(--opacity-disabled);
         cursor: progress;
     }
 
@@ -84,8 +88,6 @@
 
     .contact-success-icon {
         display: block;
-        width: 48px;
-        height: 48px;
         margin: 0 auto var(--space-4);
         color: var(--color-success);
     }
@@ -182,7 +184,7 @@
         .contact-success-fallback-separator {
             display: block;
             width: 1px;
-            height: 1.25rem;
+            height: var(--space-5);
             background-color: var(--color-light-border);
         }
 

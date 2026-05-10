@@ -37,14 +37,14 @@ unset($__defined_vars, $__key, $__value); ?>
 <div <?php echo e($attributes->merge(['class' => 'contact-success'])); ?> role="status" aria-live="polite">
     <?php if (isset($component)) { $__componentOriginald437fe0064eab6d7fb2abdae5ed6f550 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginald437fe0064eab6d7fb2abdae5ed6f550 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.icons.check','data' => ['class' => 'contact-success-icon']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.icons.check','data' => ['size' => 'w-12 h-12','class' => 'contact-success-icon']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('icons.check'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['class' => 'contact-success-icon']); ?>
+<?php $component->withAttributes(['size' => 'w-12 h-12','class' => 'contact-success-icon']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginald437fe0064eab6d7fb2abdae5ed6f550)): ?>
@@ -68,14 +68,14 @@ unset($__defined_vars, $__key, $__value); ?>
                     <a href="tel:<?php echo e(preg_replace('/\s+/', '', $phone)); ?>" class="contact-success-fallback-item">
                         <?php if (isset($component)) { $__componentOriginalda6a6e700391614c5210d6249f833787 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalda6a6e700391614c5210d6249f833787 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.icons.phone','data' => ['class' => 'w-4 h-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.icons.phone','data' => ['size' => 'w-4 h-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('icons.phone'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['class' => 'w-4 h-4']); ?>
+<?php $component->withAttributes(['size' => 'w-4 h-4']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginalda6a6e700391614c5210d6249f833787)): ?>
@@ -99,14 +99,14 @@ unset($__defined_vars, $__key, $__value); ?>
                     <a href="mailto:<?php echo e($email); ?>" class="contact-success-fallback-item">
                         <?php if (isset($component)) { $__componentOriginal01373fe5e2aaee47705ab1cbef2eac77 = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginal01373fe5e2aaee47705ab1cbef2eac77 = $attributes; } ?>
-<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.icons.mail','data' => ['class' => 'w-4 h-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = Illuminate\View\AnonymousComponent::resolve(['view' => 'components.icons.mail','data' => ['size' => 'w-4 h-4']] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('icons.mail'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>
 <?php if (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag): ?>
 <?php $attributes = $attributes->except(\Illuminate\View\AnonymousComponent::ignoredParameterNames()); ?>
 <?php endif; ?>
-<?php $component->withAttributes(['class' => 'w-4 h-4']); ?>
+<?php $component->withAttributes(['size' => 'w-4 h-4']); ?>
 <?php echo $__env->renderComponent(); ?>
 <?php endif; ?>
 <?php if (isset($__attributesOriginal01373fe5e2aaee47705ab1cbef2eac77)): ?>

@@ -1,3 +1,8 @@
+/* This file is intentionally unlayered: @view-transition and ::view-transition-*
+   are top-level at-rules whose behaviour inside @layer is not guaranteed across
+   browsers. The other rules use !important or are utility-like, so layer
+   precedence does not matter for them. */
+
 [data-gsap],
 [data-gsap="batch"] > * {
   opacity: 0;

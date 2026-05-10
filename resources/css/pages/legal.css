@@ -1,18 +1,20 @@
-.legal-article {
-    max-width: min(800px, 100%);
-    margin-left: auto;
-    margin-right: auto;
-}
+@layer components {
+    .legal-article {
+        max-width: min(800px, 100%);
+        margin-left: auto;
+        margin-right: auto;
+    }
 
-.legal-title {
-    font-family: var(--font-heading);
-    font-weight: var(--weight-bold);
-    font-size: var(--text-h1);
-    line-height: var(--leading-h1);
-    margin-bottom: var(--space-8);
-}
+    .legal-title {
+        font-family: var(--font-heading);
+        font-weight: var(--weight-bold);
+        font-size: var(--text-h1);
+        line-height: var(--leading-h1);
+        margin-bottom: var(--space-8);
+    }
 
-.legal-content {
-    font-size: var(--text-body);
-    line-height: var(--leading-body);
+    .legal-content {
+        font-size: var(--text-body);
+        line-height: var(--leading-body);
+    }
 }

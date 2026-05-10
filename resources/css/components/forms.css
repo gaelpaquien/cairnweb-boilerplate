@@ -27,7 +27,7 @@
     font-family: var(--font-body);
     font-size: var(--text-body);
     line-height: var(--leading-body);
-    padding: 0.75rem 1rem;
+    padding: var(--space-3) var(--space-4);
     border: var(--border-width-thick) solid var(--color-light-border);
     border-radius: var(--radius-md);
     background-color: var(--color-light-surface);
@@ -35,8 +35,9 @@
     transition: border-color var(--transition-base);
   }
 
+  /* Textarea minimum: ~5 visible rows of body text. */
   textarea.form-input {
-    min-height: 120px;
+    min-height: 7.5rem;
     resize: vertical;
   }
 

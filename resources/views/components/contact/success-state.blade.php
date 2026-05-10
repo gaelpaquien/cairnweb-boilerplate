@@ -7,7 +7,7 @@
 @endphp
 
 <div {{ $attributes->merge(['class' => 'contact-success']) }} role="status" aria-live="polite">
-    <x-icons.check class="contact-success-icon" />
+    <x-icons.check size="w-12 h-12" class="contact-success-icon" />
     <h3 class="contact-success-title">{{ $contact->get('success_title') }}</h3>
     <p class="contact-success-message">{{ $contact->get('success_message') }}</p>
 
@@ -19,7 +19,7 @@
             <div class="contact-success-fallback-row">
                 @if($phone)
                     <a href="tel:{{ preg_replace('/\s+/', '', $phone) }}" class="contact-success-fallback-item">
-                        <x-icons.phone class="w-4 h-4" />
+                        <x-icons.phone size="w-4 h-4" />
                         {{ $phone }}
                     </a>
                 @endif
@@ -30,7 +30,7 @@
 
                 @if($email)
                     <a href="mailto:{{ $email }}" class="contact-success-fallback-item">
-                        <x-icons.mail class="w-4 h-4" />
+                        <x-icons.mail size="w-4 h-4" />
                         {{ $email }}
                     </a>
                 @endif

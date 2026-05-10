@@ -78,6 +78,7 @@ export function init() {
       if (response.ok) {
         clearAllErrors();
         setState('success');
+        window.plausible?.('Contact Form Submit');
         return;
       }
 

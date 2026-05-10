@@ -33,6 +33,15 @@
   /* Touch target — WCAG minimum interactive size */
   --touch-target: 44px;
 
+  /* Burger menu icon — mobile nav, geometrically tied to its 3-line layout */
+  --burger-height: 1.125rem; /* 18px */
+
+  /* Component states */
+  --opacity-disabled: 0.5;
+  --opacity-pressed: 0.85;
+  --opacity-muted: 0.7;
+  --scale-pressed: 0.98;
+
   /* Shadows */
   --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
   --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 10px 30px rgba(0, 0, 0, 0.06);
@@ -50,6 +59,10 @@
   --transition-base: 0.3s ease;
   --transition-smooth: 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   --duration-spin: 0.6s;
+
+  /* Hover polish — shared between buttons, logo, and other interactive elements */
+  --scale-hover: 1.03;
+  --opacity-hover: 0.8;
 
   /* Stagger delays — used for sequential reveal animations (mobile menu, lists) */
   --stagger-1: 0.08s;

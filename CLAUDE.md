@@ -206,7 +206,7 @@ Cela inclut, sans exception :
 - **Pas de commentaires** sauf quand ils expliquent un choix non évident. Pas de comment décoratif, pas de redite de ce que fait le code.
 - **Pas de commit automatique** — jamais de `git commit` sans demande explicite. Format quand demandé : `[Type] Short description` en français, sans `Co-Authored-By`.
 - **Design tokens obligatoires** — interdit de hardcoder une couleur, taille de police, espacement ou transition dans un composant. Toujours via `var(--token)` ou la classe Tailwind correspondante.
-- **Tout CSS custom dans `@layer components`** — composants et pages CSS doivent être enveloppés dans `@layer components { … }`. Sans layer, le CSS custom passe au-dessus du layer `utilities` de Tailwind dans la cascade et empêche les utilitaires (ex : `.hidden` toggleée par JS) de gagner. Exemples : `forms.css`, `buttons.css`, `pages/home/contact.css`.
+- **Tout CSS custom dans `@layer components`** — composants et pages CSS doivent être enveloppés dans `@layer components { … }`. Sans layer, le CSS custom passe au-dessus du layer `utilities` de Tailwind dans la cascade et empêche les utilitaires (ex : `.hidden` toggleée par JS) de gagner. **Deux exceptions intentionnelles** : (1) le bloc *legal pages overrides* en bas de `components/sections.css` reste hors-layer pour battre les rules de Tailwind Typography (`.prose`) — voir le commentaire dans le fichier ; (2) `effects/animations.css` reste hors-layer car `@view-transition` et `::view-transition-*` sont des at-rules top-level dont le comportement à l'intérieur d'un `@layer` n'est pas garanti sur tous les navigateurs.
 - **Pas de SVG brut dans les templates** — toujours un composant Blade (`<x-icons.* />`).
 - **Factorisation systématique** — dès qu'un pattern se répète (bouton, input, carte, surtitre, section…), créer un composant Blade dans `resources/views/components/` plutôt que dupliquer.
 
@@ -367,7 +367,7 @@ Le SEO est un **objectif business**, pas une option. À respecter systématiquem
 - Activable en remplissant `PLAUSIBLE_SCRIPT_URL` dans `.env` (URL fournie par Plausible Cloud lors de la création du site). Vide = désactivé.
 - RGPD-compliant : sans cookies, sans IP stockée — pas de bandeau de consentement nécessaire.
 - **Événements custom** déclenchés via `window.plausible('Event Name')` :
-  - `Contact Form Submit` — émis dans `home.blade.php` après le redirect post-succès du formulaire (state no-JS).
+  - `Contact Form Submit` — émis sur les **deux chemins de succès** : (1) côté SSR dans `home.blade.php` après le redirect post-succès du formulaire (state no-JS), et (2) côté AJAX dans `resources/js/modules/contact-form.js` juste après `setState('success')`. La syntaxe optional-chaining (`window.plausible?.(...)`) garantit que l'absence du script (env vide ou hors prod) n'erreur pas.
 - CSP autorise `https://plausible.io` côté `script-src` et `connect-src` (cf. `SecurityHeaders` middleware) — adapter si Plausible est hébergé sur un autre domaine.
 
 ### Sécurité (en bref)
